@@ -12,7 +12,6 @@ const PastPlaysRow = ({ play }) => {
   } = play;
 
   function dateCleaner(date) {
-    console.log(date);
     const d = new Date(date.slice(0, 4), date.slice(5, 7), date.slice(8, 10));
     return d.toLocaleString("en-US", { dateStyle: "long" });
   }

@@ -120,6 +120,7 @@ export default function reducer(state, action) {
     case "NEW_GAME":
       return {
         ...initialState,
+        pastPlays: state.pastPlays,
         counts: {
           countGame: state.counts.countGame + 1,
           countRound: 1,

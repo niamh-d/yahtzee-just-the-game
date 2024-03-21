@@ -153,10 +153,11 @@ function GameProvider({ children }) {
     savePlayDetails(gameDetails);
   }, [scoredTotalsAndBonuses]);
 
-  function savePlayDetails(gameDetails) {
-    const plays = [...pastPlays, gameDetails];
+  function savePlayDetails(play) {
+    const plays = [...pastPlays, play];
 
     dispatch({ type: "SET_PAST_PLAYS", payload: plays });
+
     localStorage.setItem("plays", JSON.stringify(plays));
   }
 
@@ -166,13 +167,9 @@ function GameProvider({ children }) {
 
   function getPastPlays() {
     const playData = localStorage.getItem("plays");
-    let plays = JSON.parse(playData);
+    const plays = JSON.parse(playData);
 
-    console.log(plays);
-
-    if (!plays) plays = [];
-
-    dispatch({ type: "SET_PAST_PLAYS", payload: plays });
+    if (plays) dispatch({ type: "SET_PAST_PLAYS", payload: plays });
   }
 
   // END GAME SCORING
