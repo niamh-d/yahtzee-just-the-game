@@ -23,7 +23,6 @@ Based off original project by: Maria Rinaldi (GH: [@MaryRinaldi](https://github.
 1. In a terminal run:
 
 ```
-cd client
 npm run dev
 ```
 
@@ -36,6 +35,5 @@ Don't kill it; let it run.
 1. In the terminal run:
 
 ```
-cd client
 npm i
 ```
