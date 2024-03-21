@@ -2,6 +2,8 @@ import { initialState } from "../data/data";
 
 export default function reducer(state, action) {
   switch (action.type) {
+    case "SET_PAST_PLAYS":
+      return { ...state, pastPlays: action.payload };
     case "SET_ROLLED_DICE":
       return {
         ...state,

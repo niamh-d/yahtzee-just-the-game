@@ -1,9 +1,9 @@
-import { useSession } from "../contexts/SessionContext";
+import { useGame } from "../contexts/GameContext";
 
 import PastPlaysRow from "./PastPlaysRow";
 
 const PastPlaysTable = () => {
-  const { pastPlays } = useSession();
+  const { pastPlays } = useGame();
 
   return (
     <>

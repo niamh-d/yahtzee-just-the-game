@@ -3,8 +3,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useEffect, useReducer } from "react";
 
-import { useSession } from "./SessionContext";
-
 import {
   initialState,
   fixedScoresAndBonuses,
@@ -36,11 +34,10 @@ function GameProvider({ children }) {
       yahtzee,
       counts,
       isFreshRoll,
+      pastPlays,
     },
     dispatch,
   ] = useReducer(reducer, initialState);
-
-  const { savePlayDetails } = useSession();
 
   const { rolledDice, heldDice, diceToScore } = dice;
   const { countRolled, countRound } = counts;
@@ -151,6 +148,28 @@ function GameProvider({ children }) {
 
     savePlayDetails(gameDetails);
   }, [scoredTotalsAndBonuses]);
+
+  useEffect(() => {
+    getPastPlays();
+  }, []);
+
+  function getPastPlays() {
+    const playData = localStorage.getItem("plays");
+    let plays = JSON.parse(playData);
+
+    console.log(plays);
+
+    if (!plays) plays = [];
+
+    dispatch({ type: "SET_PAST_PLAYS", payload: plays });
+  }
+
+  function savePlayDetails(gameDetails) {
+    const plays = { ...pastPlays, gameDetails };
+
+    dispatch({ type: "SET_PAST_PLAYS", payload: plays });
+    localStorage.setItem("plays", JSON.stringify(plays));
+  }
 
   // END GAME SCORING
 
@@ -402,6 +421,7 @@ function GameProvider({ children }) {
         yahtzee,
         counts,
         randKey,
+        pastPlays,
       }}
     >
       {children}

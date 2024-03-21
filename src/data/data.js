@@ -44,6 +44,7 @@ export const initialState = {
     countRolled: 0,
     countRound: 1,
   },
+  pastPlays: [],
   dice: {
     rolledDice: [],
     diceToScore: [],
