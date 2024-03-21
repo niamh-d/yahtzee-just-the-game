@@ -23,8 +23,8 @@ const PastPlaysTable = () => {
             </tr>
           </thead>
           <tbody>
-            {pastPlays.map((play) => (
-              <PastPlaysRow play={play} key={play.id} />
+            {pastPlays.map((play, i) => (
+              <PastPlaysRow play={play} key={i} />
             ))}
           </tbody>
         </table>

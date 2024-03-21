@@ -1,31 +1,32 @@
 const PastPlaysRow = ({ play }) => {
   const {
     date,
-    gameNum,
-    totalScore,
+    countGame,
+    grandTotalGameScored,
     yahtzeeCount,
-    upperBonus,
-    totalUpper,
-    totalLower,
-    rounds,
+    upperTotalScored,
+    lowerTotalScored,
+    countRound,
+    upperBonusScored,
     complete,
   } = play;
 
-  function dataCleaner(date) {
+  function dateCleaner(date) {
+    console.log(date);
     const d = new Date(date.slice(0, 4), date.slice(5, 7), date.slice(8, 10));
     return d.toLocaleString("en-US", { dateStyle: "long" });
   }
 
   return (
     <tr>
-      <td>{dataCleaner(date)}</td>
-      <td>{gameNum}</td>
-      <td>{totalScore}</td>
-      <td>{totalUpper}</td>
-      <td>{upperBonus ? "✅" : "Not scored"}</td>
+      <td>{dateCleaner(date)}</td>
+      <td>{countGame}</td>
+      <td>{grandTotalGameScored}</td>
+      <td>{upperTotalScored}</td>
+      <td>{upperBonusScored ? "✅" : "Not scored"}</td>
       <td>{yahtzeeCount ? "⭐️".repeat(yahtzeeCount) : "None"}</td>
-      <td>{totalLower}</td>
-      <td>{rounds}</td>
+      <td>{lowerTotalScored}</td>
+      <td>{countRound}</td>
       <td>{complete ? "Complete game" : "Ended early"}</td>
     </tr>
   );

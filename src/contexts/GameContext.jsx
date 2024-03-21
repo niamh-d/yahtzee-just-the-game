@@ -136,18 +136,29 @@ function GameProvider({ children }) {
 
     if (!grandTotalGameScored) return;
 
+    const d = new Date().toISOString().split("T")[0];
+
     const gameDetails = {
+      date: d,
       grandTotalGameScored,
       upperTotalScored,
       lowerTotalScored,
       countRound: countRound - 1,
       countGame,
       yahtzeeScoreCount,
-      gameComplete: countRound === NUM_ROUNDS + 1 ? 1 : 0,
+      gameComplete: countRound === NUM_ROUNDS + 1,
+      upperBonusScored: upperTotalScored >= 63,
     };
 
     savePlayDetails(gameDetails);
   }, [scoredTotalsAndBonuses]);
+
+  function savePlayDetails(gameDetails) {
+    const plays = [...pastPlays, gameDetails];
+
+    dispatch({ type: "SET_PAST_PLAYS", payload: plays });
+    localStorage.setItem("plays", JSON.stringify(plays));
+  }
 
   useEffect(() => {
     getPastPlays();
@@ -162,13 +173,6 @@ function GameProvider({ children }) {
     if (!plays) plays = [];
 
     dispatch({ type: "SET_PAST_PLAYS", payload: plays });
-  }
-
-  function savePlayDetails(gameDetails) {
-    const plays = { ...pastPlays, gameDetails };
-
-    dispatch({ type: "SET_PAST_PLAYS", payload: plays });
-    localStorage.setItem("plays", JSON.stringify(plays));
   }
 
   // END GAME SCORING
