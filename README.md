@@ -10,6 +10,10 @@ Uses React, React Router, Pico CSS.
 
 Based off original project by: Maria Rinaldi (GH: [@MaryRinaldi](https://github.com/MaryRinaldi)) – [link to repo](https://github.com/MaryRinaldi/Yahtzee_Dicee).
 
+## Rules
+
+[Rules PDF](https://www.hasbro.com/common/instruct/yahtzee.pdf)
+
 ## Design
 
 ### Scoreboard and dice boxes
